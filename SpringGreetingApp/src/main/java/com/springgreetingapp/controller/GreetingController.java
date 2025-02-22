@@ -1,11 +1,14 @@
 package com.springgreetingapp.controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
+    @Autowired
+    private GreetingServices greetingServices;
     @GetMapping
     public Greeting getGreeting(){
-        return new Greeting("Hello World");
+        return greetingServices.getGreeting();
     }
     @PostMapping
     public Greeting createGreeting(@RequestBody Greeting greeting){
