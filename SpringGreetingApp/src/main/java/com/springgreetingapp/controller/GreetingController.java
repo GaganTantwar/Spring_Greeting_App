@@ -7,8 +7,12 @@ public class GreetingController {
     @Autowired
     private GreetingServices greetingServices;
     @GetMapping
-    public Greeting getGreeting(){
-        return greetingServices.getGreeting();
+    public Greeting getGreeting(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName){
+            if (firstName != null || lastName != null) {
+                return greetingServices.getPersonalizedGreeting(firstName, lastName);
+            } else {
+                return greetingServices.getGreeting();
+            }
     }
     @PostMapping
     public Greeting createGreeting(@RequestBody Greeting greeting){
