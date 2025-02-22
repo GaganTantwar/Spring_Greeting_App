@@ -8,19 +8,19 @@ public class GreetingController {
     private GreetingServices greetingServices;
     @GetMapping
     public Greeting getGreeting(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName){
-            if (firstName != null || lastName != null) {
-                return greetingServices.getPersonalizedGreeting(firstName, lastName);
-            } else {
-                return greetingServices.getGreeting();
-            }
+        if (firstName != null || lastName != null) {
+            return greetingServices.getPersonalizedGreeting(firstName, lastName);
+        } else {
+            return greetingServices.getGreeting();
+        }
     }
     @PostMapping
-    public Greeting createGreeting(@RequestBody Greeting greeting){
-        return greeting;
+    public Greeting createGreeting(@RequestBody Greeting greeting) {
+        return greetingServices.saveGreeting(greeting);
     }
     @PutMapping
     public Greeting updateGreeting(@RequestBody Greeting greeting){
-        return greeting;
+        return greetingServices.saveGreeting(greeting);
     }
 
 }

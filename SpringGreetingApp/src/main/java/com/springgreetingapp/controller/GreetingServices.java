@@ -1,12 +1,19 @@
 package com.springgreetingapp.controller;
 
+import com.springgreetingapp.controller.Greeting;
+import com.springgreetingapp.repository.GreetingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GreetingServices {
-    public Greeting getGreeting(){
-        return new Greeting("Hello Welcome To BridgeLabz Training");
+public class GreetingServices{
+    @Autowired
+    private GreetingRepository greetingRepository;
+
+    public Greeting getGreeting() {
+        return new Greeting("Hello, Welcome to BridgeLabz Training!");
     }
+
     public Greeting getPersonalizedGreeting(String firstName, String lastName) {
         if (firstName != null && lastName != null) {
             return new Greeting("Hello, " + firstName + " " + lastName + "!");
@@ -17,5 +24,9 @@ public class GreetingServices {
         } else {
             return new Greeting("Hello, World!");
         }
+    }
+
+    public Greeting saveGreeting(Greeting greeting) {
+        return greetingRepository.save(greeting);
     }
 }
