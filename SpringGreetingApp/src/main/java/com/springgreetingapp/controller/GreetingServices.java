@@ -43,5 +43,8 @@ public class GreetingServices{
             return greetingRepository.save(updatedGreeting);
         });
     }
+    public void deleteGreeting(Long id) {
+        greetingRepository.deleteById(id);
+    }
 
 }
