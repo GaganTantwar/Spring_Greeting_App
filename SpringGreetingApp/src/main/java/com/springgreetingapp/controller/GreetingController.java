@@ -22,5 +22,9 @@ public class GreetingController {
     public Greeting updateGreeting(@RequestBody Greeting greeting){
         return greetingServices.saveGreeting(greeting);
     }
+    @GetMapping("/{id}")
+    public Greeting getGreetingById(@PathVariable Long id) {
+        return greetingServices.getGreetingById(id);
+    }
 
 }
